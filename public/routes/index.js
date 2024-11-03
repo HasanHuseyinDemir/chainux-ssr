@@ -1,26 +1,9 @@
-import { count } from "/store/counter.js"
-import hello from "/public/components/hello.js"
-
-function MainPage(){
-    onRemove((e)=>e.className="fade-out")
-    return html`
+(function(_0x49e1bd,_0x571249){var _0x36db3b=_0x2fd4,_0x279d3c=_0x49e1bd();while(!![]){try{var _0x4d602b=-parseInt(_0x36db3b(0xcf))/0x1*(parseInt(_0x36db3b(0xc9))/0x2)+parseInt(_0x36db3b(0xc7))/0x3+parseInt(_0x36db3b(0xc8))/0x4+parseInt(_0x36db3b(0xcb))/0x5+parseInt(_0x36db3b(0xca))/0x6*(-parseInt(_0x36db3b(0xc6))/0x7)+parseInt(_0x36db3b(0xcc))/0x8+parseInt(_0x36db3b(0xc5))/0x9*(-parseInt(_0x36db3b(0xcd))/0xa);if(_0x4d602b===_0x571249)break;else _0x279d3c['push'](_0x279d3c['shift']());}catch(_0x51c55d){_0x279d3c['push'](_0x279d3c['shift']());}}}(_0x153c,0xe58aa));import{count}from'/store/counter.js';import _0x48a30a from'/public/components/hello.js';function _0x153c(){var _0xaf4a39=['86JeIlUb','6rMNgmo','6990175NUpgMd','3848344YnZGBZ','1868120niwiTa','fade-out','32039LUHRjC','className','/counter','18xqRhGK','7500983qfSQbN','2613591ZjaIqn','4051188GzvgAb'];_0x153c=function(){return _0xaf4a39;};return _0x153c();}function MainPage(){var _0x3ad2a6=_0x2fd4;return onRemove(_0x54652a=>_0x54652a[_0x3ad2a6(0xd0)]=_0x3ad2a6(0xce)),html`
     <div class="fade-in">
         <Hello-text/>
         Count:${count}
-        <button onclick=${()=>count(e=>e+1)}>Increase</button>
-        <button onclick=${()=>navigate("/about")}>About</button>
-        <button onclick=${()=>navigate("/counter")}>Counter</button>
+        <button onclick=${()=>count(_0x4e0bf1=>_0x4e0bf1+0x1)}>Increase</button>
+        <button onclick=${()=>navigate('/about')}>About</button>
+        <button onclick=${()=>navigate(_0x3ad2a6(0xd1))}>Counter</button>
     </div>
-    `
-}
-
-// To enhance performance, you can cache data to reduce unnecessary rendering.
-// use : let MemoizedMainPage=Memo(MainPage)
-// But...
-// Currently, Memo does not perform memoization for child components. 
-// If you're using child components, it's recommended to use Render for better results at this time.
-
-
-export default function(){
-    RenderContent(Render(MainPage))
-}
+    `;}function _0x2fd4(_0x1e660c,_0x2fac5f){var _0x153c55=_0x153c();return _0x2fd4=function(_0x2fd45c,_0x32155a){_0x2fd45c=_0x2fd45c-0xc5;var _0x11ba9b=_0x153c55[_0x2fd45c];return _0x11ba9b;},_0x2fd4(_0x1e660c,_0x2fac5f);}export default function (){RenderContent(Render(MainPage));}
