@@ -1,26 +1,26 @@
-let count=createState(0)
+import { count } from "/store/counter.js"
+import hello from "/public/components/hello.js"
 
 function MainPage(){
-    onRemove(()=>console.log("Goodbye!"))
-
-    Watch(()=>{
-        console.log("Count Set",count())
-    })
-
+    onRemove((e)=>e.className="fade-out")
     return html`
-    <div class="fade-in" onclick=${()=>count(e=>e+1)}>
+    <div class="fade-in">
+        <Hello-text/>
         Count:${count}
-        <button  onclick=${()=>navigate("/about")}>About</button>
+        <button onclick=${()=>count(e=>e+1)}>Increase</button>
+        <button onclick=${()=>navigate("/about")}>About</button>
+        <button onclick=${()=>navigate("/counter")}>Counter</button>
     </div>
     `
 }
 
-let MemoizedMainPage=Memo(MainPage)
+// To enhance performance, you can cache data to reduce unnecessary rendering.
+// use : let MemoizedMainPage=Memo(MainPage)
+// But...
+// Currently, Memo does not perform memoization for child components. 
+// If you're using child components, it's recommended to use Render for better results at this time.
+
 
 export default function(){
-    if(getQueryParams().count){
-        count(Number(getQueryParams().count))
-    }
-
-    RenderContent(MemoizedMainPage)
+    RenderContent(Render(MainPage))
 }

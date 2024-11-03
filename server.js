@@ -1,5 +1,5 @@
 const logger={
-    logger:false//
+    logger:false//customizable
 }
 const fastify = require('fastify')(logger);
 const fs = require('fs');
@@ -37,6 +37,20 @@ fastify.get('/public/*', async (request, reply) => {
         case '.js':reply.type('application/javascript');break;
         case '.html':reply.type('text/html');break;
         default:reply.type('text/plain');
+    }
+        return fileContent;
+    } catch (err) {
+    reply.code(404).send('File not found');
+    }
+});
+
+fastify.get('/store/*', async (request, reply) => {
+    const filePath = path.join(__dirname, request.raw.url);
+    try {
+      const fileContent = fs.readFileSync(filePath);
+      const extname = path.extname(filePath).toLowerCase();
+      switch (extname) {
+        case '.js':reply.type('application/javascript');break;
     }
         return fileContent;
     } catch (err) {

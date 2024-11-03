@@ -17,8 +17,8 @@
 }
 
 .fade-in{
-    animation: .5s ease-out fadeIn;
+    animation: .3s ease-in fadeIn;
 }
 .fade-out{
-    animation: .5s ease-out fadeOut;
+    animation: .3s ease-out fadeOut;
 }
