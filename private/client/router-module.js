@@ -41,7 +41,7 @@ window.navigate = async function (url, paramsobj) {
         }
     } catch (error) {
         console.error("Error loading module:", error);
-        const errPage = await import("/public/routes/404.js");
+        const errPage = await import("/public/routes/404/index.js");
         if (errPage.default) {
             errPage.default();
             window.history.pushState({ route: '404' }, '', '/404');

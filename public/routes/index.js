@@ -1,9 +1,6 @@
 let count=createState(0)
 
 function MainPage(){
-    onConnect(function(e){
-        e.className="fade-in"
-    })
     onRemove(()=>console.log("Goodbye!"))
 
     Watch(()=>{
@@ -11,9 +8,9 @@ function MainPage(){
     })
 
     return html`
-    <div onclick=${()=>count(e=>e+1)}>
+    <div class="fade-in" onclick=${()=>count(e=>e+1)}>
         Count:${count}
-        <button class="hello" onclick=${()=>navigate("/about")}>About</button>
+        <button  onclick=${()=>navigate("/about")}>About</button>
     </div>
     `
 }
