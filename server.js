@@ -1,13 +1,13 @@
-const fastify = require('fastify')({ logger: true });
+const fastify = require('fastify')(/**{ logger: true }*/);
 const fs = require('fs');
 const path = require('path');
 
-fastify.get('/scripts/client', async (_, res) => {
+/*fastify.get('/scripts/client', async (_, res) => {
     const filePath = path.join(__dirname, 'client.js');
     const fileContent = fs.readFileSync(filePath, 'utf-8');
     res.type('text/javascript');
     return fileContent;
-});
+});*/
 
 // Basit bir GET endpoint oluştur
 fastify.get('/', async (request, reply) => {
@@ -18,15 +18,28 @@ fastify.get('/', async (request, reply) => {
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Fastify HTML Render</title>
-        <script src="/scripts/client"></script>
+        <title>Chainux APP</title>
+        <script src="/public/client.js" type="module"></script>
     </head>
     <body>
-        <h1>Merhaba, Fastify!</h1>
-        <p>Bu, Fastify ile render edilen bir HTML sayfasıdır.</p>
+        <div id="app"></div>
+        <noscript>
+            <p>Your browser does not support JavaScript or it is disabled. Please enable JavaScript for the best experience on this site.</p>
+        </noscript>
     </body>
     </html>
-  `; // Dönmek istediğin HTML içeriğini yaz
+  `;
+});
+
+fastify.get('/public/*', async (request, reply) => {
+    const filePath = path.join(__dirname, request.raw.url);
+    try {
+      const fileContent = fs.readFileSync(filePath);
+      reply.type('application/octet-stream');
+      return fileContent;
+    } catch (err) {
+      reply.code(404).send('File not found');
+    }
 });
 
 // Sunucuyu başlat
