@@ -4,7 +4,7 @@ Git:HasanHuseyinDemir
 Repo:https://github.com/HasanHuseyinDemir/Chainux-R
 License:MIT
 */
-import {html,Component,onConnect,onRemove,Elements,createComputed,createReducer,createState,untrack,watch,Watch,Render,Memo,Mount} from "https://cdn.jsdelivr.net/gh/HasanHuseyinDemir/Chainux-R/versions/chainux-r%400.2.beta.min.js"
+import {html,Component,onConnect,onRemove,Elements,createComputed,createReducer,createState,untrack,watch,Watch,Render,Memo,Mount} from "https://cdn.jsdelivr.net/gh/HasanHuseyinDemir/Chainux-R@master/versions/chainux-r-@0.3.beta.min.js"
 
 //Can user can get server-components?
 const isComponentPrivate=1
