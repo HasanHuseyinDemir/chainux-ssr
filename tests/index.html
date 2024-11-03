@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="app"></div>    
+    <script type="module">
+import {html,Component,onConnect,onRemove,Elements,createComputed,createReducer,createState,untrack,watch,Watch,Render,Memo,Mount} from "https://cdn.jsdelivr.net/gh/HasanHuseyinDemir/Chainux-R/versions/chainux-r%400.2.beta.min.js"
+let count=createState(0)
+
+function MainPage(){
+    onConnect(function(e){
+        e.className="fade-in"
+    })
+    onRemove(()=>console.log("Goodbye!"))
+
+    Watch(()=>{
+        console.log("Count Set",count())
+    })
+
+    return html`
+    <div onclick=${()=>count(e=>e+1)}>
+        Count:${count}
+        <button class="hello" onclick=${()=>navigate("/about")}>About</button>
+    </div>
+    `
+}
+
+let MemoizedMainPage=Memo(MainPage)
+
+    const app=document.querySelector("#app")
+    Mount("#app",MainPage)
+    </script>
+</body>
+</html>
