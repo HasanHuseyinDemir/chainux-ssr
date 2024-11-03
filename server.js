@@ -1,17 +1,12 @@
-const fastify = require('fastify')(/**{ logger: true }*/);
+const logger={
+    logger:false//
+}
+const fastify = require('fastify')(logger);
 const fs = require('fs');
 const path = require('path');
 
-/*fastify.get('/scripts/client', async (_, res) => {
-    const filePath = path.join(__dirname, 'client.js');
-    const fileContent = fs.readFileSync(filePath, 'utf-8');
-    res.type('text/javascript');
-    return fileContent;
-});*/
-
-// Basit bir GET endpoint oluştur
-fastify.get('/', async (request, reply) => {
-  reply.type('text/html'); // Yanıtın tipini HTML olarak ayarla
+fastify.get('/*', async (r, reply) => {
+  reply.type('text/html');
   return `
     <!DOCTYPE html>
     <html lang="en">
@@ -19,6 +14,7 @@ fastify.get('/', async (request, reply) => {
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Chainux APP</title>
+        <link rel="icon" href="/public/assets/favicon.png" type="image/x-icon">
         <script src="/public/client.js" type="module"></script>
     </head>
     <body>
@@ -35,22 +31,31 @@ fastify.get('/public/*', async (request, reply) => {
     const filePath = path.join(__dirname, request.raw.url);
     try {
       const fileContent = fs.readFileSync(filePath);
-      reply.type('application/octet-stream');
-      return fileContent;
+      const extname = path.extname(filePath).toLowerCase();
+      switch (extname) {
+        case '.js':reply.type('application/javascript');break;
+        case '.css':reply.type('text/css');break;
+        case '.html':reply.type('text/html');break;
+        case '.jpg':case '.jpeg':reply.type('image/jpeg');break;
+        case '.png':reply.type('image/png');break;
+        case '.gif':reply.type('image/gif');break;
+        case '.svg':reply.type('image/svg+xml');break;
+        default:reply.type('text/plain');
+    }
+        return fileContent;
     } catch (err) {
-      reply.code(404).send('File not found');
+    reply.code(404).send('File not found');
     }
 });
 
 // Sunucuyu başlat
 const start = async () => {
-  try {
+try {
     await fastify.listen({port:3000});
-    console.log('Sunucu http://localhost:3000 adresinde çalışıyor...');
-  } catch (err) {
+    console.log('Chainux Server Started!: http://localhost:3000');
+} catch (err) {
     fastify.log.error(err);
     process.exit(1);
-  }
-};
+}};
 
 start();
