@@ -1,5 +1,7 @@
 export default function(){
-    RootElement.textContent="MEMEMEs"+JSON.stringify(getQueryParams())
+    let div=document.createElement("div")
+    RenderContent(div)
+    div.textContent=1
 }
 
 export function onExit(){

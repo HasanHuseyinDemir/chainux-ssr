@@ -50,14 +50,18 @@ window.navigate = async function (url, paramsobj) {
 };
 
 
-window.RenderContent = function (html) {
-    if (RootElement.firstElementChild && RootElement.firstElementChild.isEqualNode(html)) {
-        return;
-    } else {
-        RootElement.firstElementChild.remove();
+window.RenderContent = function(html){
+    if (html instanceof Node) {
+        if (RootElement.firstChild && RootElement.firstChild.isEqualNode(html)) {
+            return;
+        }
+        RootElement.textContent = "";
         RootElement.append(html);
+    } else {
+        console.error("RenderContent's first parameter must be an instance of an HTML element!");
     }
 };
+
 
 /* ROUTER */
 window.onpopstate = (event) => {

@@ -15,7 +15,7 @@ fastify.get('/*', async (r, reply) => {
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Chainux APP</title>
         <link rel="icon" href="/public/assets/favicon.png" type="image/x-icon">
-        <script src="/public/client.js" type="module"></script>
+        <script src="/public/client/client.js" type="module"></script>
     </head>
     <body>
         <div id="app"></div>
