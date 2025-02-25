@@ -1,7 +1,5 @@
-import { count } from "/store/counter.js"
-
-
 function Counter(){
+    const count=createState(0)
     let refP=null
     onRemove((e)=>e.className="fade-out")
     Watch(()=>{
@@ -13,10 +11,9 @@ function Counter(){
             }
         }
     })
-
     return html`
     <div class="fade-in">
-        <h1 class="transition" style=${()=>count()<0?"color:red":""}>Counter Page!</h1>
+        <h1 class="transition" style=${()=>count()<0?"color:red":""}>Counter Pages!</h1>
         <p class="transition" use=${function(){refP=this}}>Count:${count}</p>
         <div style="display:flex;">
         <button onclick=${()=>count(e=>e+1)}>Increase</button>
@@ -37,6 +34,7 @@ function Counter(){
 
 let memoized=Memo(Counter)
 
-export default function(){
+export default function(req){
+    console.log(arguments)
     RenderContent(memoized)
 } 

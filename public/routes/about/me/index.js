@@ -1,9 +1,12 @@
+import {Content, current, x} from "../index.js"
+import { Pages } from "../index.js"
+
 export default function(){
-    let div=document.createElement("div")
-    RenderContent(div)
-    div.textContent=1
+    RenderContent(Pages)
+    x((e)=>e+1)
+    current("ME!")
 }
 
 export function onExit(){
-console.log("Sayfadan çıkılmışke")
+console.log("Sayfadan çıkılmışkeaa")
 }

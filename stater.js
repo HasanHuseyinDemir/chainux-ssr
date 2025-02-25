@@ -1,3 +1,8 @@
+/*
+Author:Hasan Hüseyin Demir
+Github:HasanHuseyinDemir https://github.com/HasanHuseyinDemir
+*/
+
 function destroy(o){
     if(typeof o!="string"){
         for(let val in o){
@@ -12,7 +17,7 @@ function destroy(o){
     }
 }
 let StateContext=[]
-export function createState(i){
+function createState(i){
     let set=new Set()
     let data={
         initial:i,
@@ -52,7 +57,7 @@ export function createState(i){
     return s
 }
 
-export function createReducer(i,f){
+function createReducer(i,f){
     let state=createState(i)
     let kill
     function dispatch(...args){
@@ -75,7 +80,7 @@ export function createReducer(i,f){
     return dispatch
 }
 
-export function createComputed(f){
+function createComputed(f){
     let state=createState(1)
     let watcher=watch(()=>{state(f())})
     let kill=state.kill
@@ -91,7 +96,7 @@ export function createComputed(f){
 }
 
 
-export function watch(f,assign){
+function watch(f,assign){
     StateContext.push(new Set())
     let localF
     let settings={
@@ -118,9 +123,13 @@ export function watch(f,assign){
     settings.append()//init
     return settings
 }
-export function untrack(f){
+function untrack(f){
     StateContext.push(new Set())
     let res=f()
     void StateContext.pop()
     return res
+}
+
+module.exports={
+    watch,untrack,createComputed,createReducer,createState
 }
